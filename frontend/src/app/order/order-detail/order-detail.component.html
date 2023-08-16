@@ -1,0 +1,33 @@
+<div *ngIf="productDetails.length > 0">
+<h3>Order No. {{orderId}}</h3>
+<h4>Price : {{orderDetails?.price}}</h4>
+<h4>Ordered On : {{orderDetails?.timeStamp*1000 | date:"medium"}}</h4>
+
+<div class="productList" *ngFor="let product of productDetails;">
+    <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{product.name}}</mat-card-title>
+          <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+        </mat-card-header>
+        <div class="card-img-container">
+            <img mat-card-image class="card-img" src="{{product.imageUrl}}" alt="Image of {{product.name}}">
+        </div>
+        <mat-card-content>
+          <div>
+                <p>Price : {{product.price | currency:"INR"}}</p>
+                <p>Quantity : {{product.quantity}}</p>    
+          </div>
+
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button disabled>CART</button>
+          <button mat-button disabled>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+      
+</div>
+</div>
+<div *ngIf="productDetails.length <= 0">
+    OOPs! Wrong order number. Please check your order id again
+</div>

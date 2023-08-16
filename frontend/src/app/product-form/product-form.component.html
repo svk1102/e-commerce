@@ -1,0 +1,49 @@
+<form [formGroup]="ProductForm" (ngSubmit)="submitProduct()">
+<div mat-dialog-title>
+    <h3>Product Form</h3>
+</div>
+<div mat-dialog-content class="content">
+    <div style="display: flex; justify-content:flex-end;"> Selected category: {{selectedValue}} </div>
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Product Name</mat-label>
+            <input matInput type="text" placeholder="Ex. Iphone 13" formControlName="name" >
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Select Category</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="category" formControlName="category">
+              <mat-option *ngFor="let category of categories" [value]="category.name">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>        
+    </div>
+
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Product Price</mat-label>
+            <input matInput type="number" placeholder="Ex. Rs.550" formControlName="price" >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Product Quantity</mat-label>
+            <input matInput type="number" placeholder="Ex. 65" formControlName="quantity">
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Image Url</mat-label>
+            <input matInput type="url" placeholder="Ex. www.google.png" formControlName="imageUrl" >
+        </mat-form-field>
+        <!-- <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Ex. Babaji">
+        </mat-form-field> -->
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button type="reset">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="ProductForm.invalid">{{data ? "Update":"Save"}}</button>
+</div>
+</form>

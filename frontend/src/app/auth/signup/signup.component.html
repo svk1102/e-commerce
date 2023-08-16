@@ -1,0 +1,94 @@
+<div class="content">
+    <div>
+        <h4>SignUp</h4>
+    </div>
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="tab-icon">person</mat-icon>
+                <p class="tab-label">Sign Up as User</p>
+              </ng-template>          
+
+            <form [formGroup]="SignUpForm" (ngSubmit)="SignUpUser()">
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput type="text" placeholder="Enter your first name" formControlName="firstName" >
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput type="text" placeholder="Enter your last name" formControlName="lastName">
+                    </mat-form-field>
+                </div>
+        
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="text" placeholder="Enter your email" formControlName="email">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="text" placeholder="Set your password" formControlName="password">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Confirm Password</mat-label>
+                        <input matInput type="text" placeholder="Confirm your password" formControlName="confirmPassword">
+                        <mat-error *ngIf="SignUpForm.errors?.['passwordMismatchError']">Passwords must match</mat-error>
+                    </mat-form-field>
+                    
+                </div>
+                <div class="row">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="SignUpForm.invalid">Sign Up</button>
+                    <button mat-raised-button type="reset">Clear</button>
+                </div>
+            </form>
+
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">store</mat-icon>
+                <p class="tab-label">Sign Up as Merchant</p>
+              </ng-template> 
+
+            <form [formGroup]="SignUpForm" (ngSubmit)="SignUpMerchant()">
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput type="text" placeholder="Enter your first name" formControlName="firstName" >
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput type="text" placeholder="Enter your last name" formControlName="lastName">
+                    </mat-form-field>
+                </div>
+        
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="text" placeholder="Enter your email" formControlName="email">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="text" placeholder="Set your password" formControlName="password">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Confirm Password</mat-label>
+                        <input matInput type="text" placeholder="Confirm your password" formControlName="confirmPassword">
+                        <mat-error *ngIf="SignUpForm.errors?.['passwordMismatchError']">Passwords must match</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="SignUpForm.invalid">Sign Up</button>
+                    <button mat-raised-button type="reset">Clear</button>
+                </div>
+            </form>
+
+        </mat-tab>
+    
+    </mat-tab-group>
+    </div>

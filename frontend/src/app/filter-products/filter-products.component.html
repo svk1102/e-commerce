@@ -1,0 +1,62 @@
+<h2>Filters</h2>
+<mat-divider></mat-divider>
+<h5>Filter products by category</h5>
+<form>
+    <mat-form-field class="example-chip-list" appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Favorite Categorys</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Category selection">
+        <mat-chip-row *ngFor="let category of categorys" (removed)="remove(category)">
+          {{category}}
+          <button matChipRemove [attr.aria-label]="'remove ' + category">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input placeholder="New Category..." #categoryInput [formControl]="categoryCtrl"
+        [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)"/>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let category of filteredCategorys | async" [value]="category.name">
+          {{category.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  
+<mat-divider></mat-divider>
+  <h5>Filter products by merchants</h5>
+  <form>
+    <mat-form-field class="example-chip-list" appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Favorite Merchants</mat-label>
+      <mat-chip-grid #mchipGrid aria-label="Merchants selection">
+        <mat-chip-row *ngFor="let merchant of merchants" (removed)="removeMerchant(merchant)">
+          {{merchant}}
+          <button matChipRemove [attr.aria-label]="'remove ' + merchant">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input placeholder="New Merchant..." #merchantInput [formControl]="merchantCtrl"
+        [matChipInputFor]="mchipGrid" [matAutocomplete]="mauto"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addMerchant($event)"/>
+      <mat-autocomplete #mauto="matAutocomplete" (optionSelected)="selectedMerchant($event)">
+        <mat-option *ngFor="let merchant of filteredMerchants | async" [value]="merchant">
+          {{merchant}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  
+  <mat-divider></mat-divider>
+  <h5>Filter products by price range</h5>
+
+    <form class="example-form">
+        <mat-slider min="0" max="50000" step="500" [showTickMarks]=false discrete [displayWith]="formatLabel">
+            <input value="0" matSliderStartThumb [(ngModel)]="lowerValue" (change)="productFilter()" name="upperValue">
+            <input value="50000" matSliderEndThumb [(ngModel)]="upperValue" (change)="productFilter()" name="lowerValue">
+        </mat-slider>
+    </form>
+  
+  

@@ -1,0 +1,40 @@
+.row{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid blue; */
+    
+}
+.content{
+    /* border: 2px solid blue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+form{
+    padding: 1rem;
+    margin: 2rem;
+}
+.tab-icon{
+    display: none;
+}
+.tab-label{
+    display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .row{
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .tab-icon{
+        display: block;
+    }
+    .tab-label{
+        display: none;
+    }
+}

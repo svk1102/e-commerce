@@ -1,0 +1,14 @@
+
+
+mat-slider {
+    width: 85%;
+    margin: 1rem 0rem 0rem 1rem;
+    /* z-index: 200; */
+    /* background-color: aqua; */
+    /* overflow: hidden; */
+}
+
+mat-form-field{
+    gap: 1rem;
+    margin: 1rem 0rem;
+}

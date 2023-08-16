@@ -1,0 +1,45 @@
+<ngb-carousel
+	#carousel
+	[interval]="3000"
+	[pauseOnHover]="pauseOnHover"
+	[pauseOnFocus]="pauseOnFocus"
+	(slide)="onSlide($event)"
+>
+	<ng-template ngbSlide *ngFor="let product of carouselProducts">
+        <div style="padding: 2rem;" [routerLink]="['/products',product.productId]">
+		<div class="carousel-caption">
+			<h3>{{product.title}}</h3>
+            <h5>{{product.name}} | {{product.category}}</h5>
+            <h4 style="display: flex; justify-content: center; align-items: center;">{{product.likes.length}}<mat-icon color="warn">favorite</mat-icon></h4>
+            <div> Availble at <h3 style="display: inline-block;">{{product.price | currency:'INR'}}</h3> Only!</div>
+            <div>Only {{product.quantity}} left</div>
+            
+		</div>
+        <div class="picsum-img-wrapper">
+			<img [src]="product.imageUrl" alt="{{product.name}}" />
+		</div>
+        </div>
+	</ng-template>
+</ngb-carousel>
+
+<hr />
+
+<!-- <div class="form-check">
+	<input type="checkbox" class="form-check-input" id="pauseOnHover" [(ngModel)]="pauseOnHover" />
+	<label class="form-check-label" for="pauseOnHover">Pause on hover</label>
+</div>
+<div class="form-check">
+	<input type="checkbox" class="form-check-input" id="pauseOnFocus" [(ngModel)]="pauseOnFocus" />
+	<label class="form-check-label" for="pauseOnFocus">Pause on focus</label>
+</div>
+<div class="form-check">
+	<input type="checkbox" class="form-check-input" id="unpauseOnArrow" [(ngModel)]="unpauseOnArrow" />
+	<label class="form-check-label" for="unpauseOnArrow">Unpause when clicking on arrows</label>
+</div>
+<div class="form-check">
+	<input type="checkbox" class="form-check-input" id="pauseOnIndicator" [(ngModel)]="pauseOnIndicator" />
+	<label class="form-check-label" for="pauseOnIndicator">Pause when clicking on navigation indicator</label>
+</div>
+<button type="button" (click)="togglePaused()" class="btn btn-outline-dark btn-sm">
+	{{paused ? 'Cycle' : 'Pause' }}
+</button> -->

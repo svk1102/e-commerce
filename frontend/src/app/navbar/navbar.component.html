@@ -1,0 +1,102 @@
+<mat-toolbar color="primary">
+  <div class="navItem">
+    <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button> -->
+    <!-- <button id="appTitle" routerLink="/products" mat-stroked-button color="primary">ShopNow</button> -->
+    <h1 id="appTitle" routerLink="/products">ShopNow</h1>
+  </div>
+  <div class="navItem formClass">
+    <button mat-icon-button aria-label="Example icon" class="filter-btn" (click)="drawer.toggle()" routerLink="/products" matTooltip="Filter Products">
+      <mat-icon>tune</mat-icon>
+    </button>
+    <form class="searchForm">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic" style="width: 100%;">
+        <mat-label style="color: rgba(255, 255, 255, 0.659);">Search Shopnow.com</mat-label>
+        <input type="text"
+               placeholder="Search Products"
+               aria-label="Search"
+               matInput
+               [formControl]="myControl"
+               [matAutocomplete]="auto" style="color: white;">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)='clickedOption($event.option.value)' name="option">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option.displayValue">
+            {{option.displayValue}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="navItem">
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" *ngIf="loginStatus && role =='USER'" routerLink="/cart" id="desktop-cart">
+      <mat-icon color="" matBadgeColor="warn" matBadge={{cartItems}}>shopping_cart</mat-icon>
+    </button>
+    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" *ngIf="loginStatus && role =='USER'" routerLink="/orders">
+      <mat-icon>receipt_long</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" *ngIf="loginStatus && role =='MERCHANT'" (click)="openProductForm()">
+      <mat-icon>library_add</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" *ngIf="loginStatus" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button> -->
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngIf="loginStatus && role =='USER'" routerLink="/orders">
+        <mat-icon>receipt_long</mat-icon>
+        <span>My Orders</span>
+      </button>
+      <button mat-menu-item *ngIf="loginStatus && role =='MERCHANT'" (click)="openProductForm()">
+        <mat-icon>library_add</mat-icon>
+        <span>Add Products</span>
+      </button>
+      <button mat-menu-item *ngIf="loginStatus" routerLink="/profile">
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button mat-menu-item *ngIf="loginStatus" routerLink="/category">
+        <mat-icon>store_mall_directory</mat-icon>
+        <span>Categories</span>
+      </button>
+      <button mat-menu-item *ngIf="loginStatus" routerLink="/merchant">
+        <mat-icon>group</mat-icon>
+        <span>Merchants</span>
+      </button>
+      <button mat-menu-item *ngIf="loginStatus && role =='ADMIN'" routerLink="/admin">
+        <mat-icon>desktop_mac</mat-icon>
+        <span>Admin Panel</span>
+      </button>
+      <button mat-menu-item *ngIf="loginStatus" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+      <button mat-menu-item *ngIf="loginStatus && role =='USER'" routerLink="/cart" id="mobile-cart">
+        <mat-icon matBadge={{cartItems}}>shopping_cart</mat-icon>
+        <span>Cart</span>
+      </button>
+    </mat-menu>
+    
+  </div>
+  </mat-toolbar>
+  
+  <mat-drawer-container class="example-container" autosize hasBackdrop="false">
+    <mat-drawer #drawer class="example-sidenav" mode="push">
+        
+      <!-- mat-chip for category -->
+      
+      <app-filter-products></app-filter-products>
+      <!--  -->
+
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+  
+  </mat-drawer-container>
+  
+
+  

@@ -1,0 +1,19 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{productDetail?.name}}</mat-card-title>
+      <mat-card-subtitle>{{productDetail?.category}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{productDetail?.imageUrl}}" alt="Image of {{productDetail?.name}}">
+    <mat-card-content>
+      <div>
+            <p>Price : {{productDetail?.price | currency:"INR"}}</p>
+            <p>Quantity : {{productDetail?.quantity}}</p>    
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- <button mat-button (click)="addToCart(product.productId)">CART</button> -->
+      <button mat-button>Supplier : {{productDetail?.merchantName}}</button>
+    </mat-card-actions>
+  </mat-card>

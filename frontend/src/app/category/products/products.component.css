@@ -1,0 +1,98 @@
+.example-card {
+    width: 400px;
+    height: 600px;
+    cursor: pointer;
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+  .productList{
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2rem;
+}
+
+  
+mat-form-field {
+    width: 30%;
+    margin: 1rem;
+}
+mat-slider {
+    width: 20%;
+    margin: 1rem;
+    transform: rotate(90deg);
+    position:fixed;
+    top: 35%;
+    left: 80%;
+    z-index: 1;
+    /* display: none; */
+}
+
+mat-toolbar{
+    display: flex;
+    justify-content: space-between;
+}
+
+mat-card-actions{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.card-img-container{
+    width: 100%;
+    height: 50%;
+}
+.card-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.like{
+    color: wheat;
+}
+.unlike{
+    color: red;
+}
+  
+@media screen and (max-width: 768px) {
+    
+    .example-card{
+        width: 80%;
+        margin: 0;
+        height: auto;
+    }
+    .example-form{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .productList{
+        display: flex;
+        margin:1rem 0rem;
+    }
+    mat-form-field{
+        width: 80%;
+    }
+    mat-slider{
+        /* width: 20%; */
+        margin: 1rem;
+        transform: none;
+        position:relative;
+        z-index: 1;
+        left: 0;
+        bottom: 0;
+        width: 80%;
+    }
+    mat-card-actions{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column-reverse;
+    }
+
+}

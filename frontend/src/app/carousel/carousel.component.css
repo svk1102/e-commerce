@@ -1,0 +1,15 @@
+.picsum-img-wrapper img{
+    height: 50vh;
+}
+.carousel-caption{
+    color: black;
+}
+
+@media screen and (max-width: 768px){
+    ngb-carousel{
+        height: 100vh;
+    }  
+    .carousel-caption{
+        position: relative;
+    } 
+}

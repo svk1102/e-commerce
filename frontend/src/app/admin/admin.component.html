@@ -1,0 +1,191 @@
+  <div *ngIf="role=='ADMIN'">
+    <h1 style="padding: 1rem; display: flex; justify-content: center;">Admin Panel</h1>
+
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Categories
+      </mat-panel-title>
+      <mat-panel-description>
+        View all categories present in the application
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <!--  -->
+    <h3 style="padding: 1rem;">Categories</h3>
+    <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8 demo-table">
+    
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef>Image</th>
+          <td mat-cell *matCellDef="let element">
+              <img class="card-img" src={{element.imageUrl}}/>
+          </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+    </table>
+    <div class="demo-button-container">
+      <h5>Add category</h5>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+          <mat-label>Category</mat-label>
+          <input matInput type="text" [(ngModel)]="value">
+          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+          <mat-label>Image URL</mat-label>
+          <input matInput type="text" [(ngModel)]="url">
+          <button *ngIf="url" matSuffix mat-icon-button aria-label="Clear" (click)="url=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>      
+      <button mat-raised-button (click)="addData(value,url)" class="demo-button" color="primary">
+        Add 
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+    <!--  -->
+  </mat-expansion-panel>
+      
+  <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Orders
+          </mat-panel-title>
+          <mat-panel-description>
+            View All orders placed 
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+      
+        <!--  -->
+
+        <h3 style="padding: 0.5rem;">All Orders</h3>
+        <app-admin-filters></app-admin-filters>
+
+    <table mat-table [dataSource]="dataSource2.reverse()" class="mat-elevation-z8 demo-table" multiTemplateDataRows>
+     
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+  
+   
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>price</th>
+        <td mat-cell *matCellDef="let element">{{element.price}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>quantity</th>
+        <td mat-cell *matCellDef="let element">{{element.quantity}}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="timeStamp">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element">{{element.timeStamp*1000 | date}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef>userId</th>
+        <td mat-cell *matCellDef="let element">{{element.userId}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+            <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+            <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+          <div class="example-element-detail"
+               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <mat-list *ngFor="let product of element.productDetails">
+            <mat-list-item>
+              <div style="display: flex;gap: 1rem;">
+                <img src={{product.imageUrl}} height="25rem" width="25rem"/>
+                <div>{{product.name}}</div> 
+                <div>: x{{product.quantity}}</div>
+              </div>
+            </mat-list-item>  
+            </mat-list>
+            
+          </div>
+        </td>
+      </ng-container>    
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+
+        <!--  -->
+
+  </mat-expansion-panel>
+
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Accounts
+      </mat-panel-title>
+      <mat-panel-description>
+        View all accounts present in the application
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <!--  -->
+    <h3 style="padding: 1rem;">Accounts</h3>
+    <table mat-table [dataSource]="dataSource3" class="mat-elevation-z8 demo-table">
+    
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>First name</th>
+        <td mat-cell *matCellDef="let element">{{element.firstName}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef>Last name</th>
+          <td mat-cell *matCellDef="let element">{{element.lastName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>Role</th>
+        <td mat-cell *matCellDef="let element">{{element.role}}</td>
+    </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns3;" [ngClass]="{'red-row': row.role === 'ADMIN','green-row': row.role === 'USER','blue-row': row.role === 'MERCHANT'}"></tr>
+    </table>
+    
+    <!--  -->
+  </mat-expansion-panel>
+
+
+
+</mat-accordion>
+  </div>

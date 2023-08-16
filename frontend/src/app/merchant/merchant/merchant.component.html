@@ -1,0 +1,8 @@
+<mat-toolbar>
+    Merchants
+</mat-toolbar>
+<div *ngFor="let merchant of merchants">
+    <mat-card [routerLink]="['/merchant',merchant.id,'products']">
+        <mat-card-content>{{merchant.firstName}} {{merchant.lastName}}</mat-card-content>
+      </mat-card>      
+</div>

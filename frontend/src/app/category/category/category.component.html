@@ -1,0 +1,11 @@
+<mat-toolbar>
+    Categories
+</mat-toolbar>
+<div class="main-container">
+<mat-card *ngFor="let category of categories" class="category-container" color="primary" [routerLink]="['/category',category.name]">
+    <mat-toolbar color="primary">{{category.name}}</mat-toolbar>
+        <div class="image-container">
+            <img src={{category.imageUrl}} alt={{category.name}}>
+        </div>
+</mat-card>
+</div>

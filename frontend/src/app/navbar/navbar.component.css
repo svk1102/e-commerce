@@ -1,0 +1,78 @@
+#appTitle{
+  font-size:xx-large;
+  font-weight: bolder;
+  color: transparent;
+  -webkit-text-stroke: 0.01px white;
+  /* background: rebeccapurple; */
+  padding: 1rem;
+  cursor: pointer;
+}
+
+mat-toolbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+input::placeholder{
+  color: rgba(255, 255, 255, 0.684) !important;
+}
+
+.navItem{
+  height: 100%;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formClass{
+  width: 50%;
+}
+.searchForm{
+  width: 100%;
+}
+
+
+.example-container {
+  width: 100vw;
+  height: 89vh;
+}
+
+
+.example-sidenav {
+  padding: 20px;
+}
+
+.mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+#mobile-cart{
+  display: none;
+}
+/* .filter-btn{
+  position: fixed;
+  top: 50%;
+  left: 5rem;
+  z-index: 100;
+} */
+
+@media screen and (max-width: 768px) {
+  #appTitle{
+    display: none;
+  }
+  .formClass{
+    width: max-content;
+  }
+  mat-toolbar{
+    padding: 0px;
+  }
+  #mobile-cart{
+    display: block;
+  }
+  #desktop-cart{
+    display: none;
+  }
+}
+
+  
